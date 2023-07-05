@@ -25,7 +25,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int san = 0;
+  int san = 4;
 
   void kushuu() {
     setState(() {
