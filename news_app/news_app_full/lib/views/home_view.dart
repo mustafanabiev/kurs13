@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:news_app_full/constants/api_const.dart';
-import 'package:news_app_full/models/articles.dart';
+import 'package:news_app_full/components/news_card.dart';
 import 'package:news_app_full/models/top_news.dart';
 import 'package:news_app_full/services/fetch_service.dart';
 import 'package:news_app_full/theme/app_colors.dart';
-import 'package:news_app_full/views/detail_view.dart';
 import 'package:news_app_full/views/search_view.dart';
 
 class HomeView extends StatefulWidget {
@@ -64,53 +62,6 @@ class _HomeViewState extends State<HomeView> {
         child: const Icon(
           Icons.search,
           color: AppColors.white,
-        ),
-      ),
-    );
-  }
-}
-
-class NewsCard extends StatelessWidget {
-  const NewsCard({
-    super.key,
-    required this.item,
-  });
-
-  final Articles item;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: InkWell(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => DetailView(news: item),
-            ),
-          );
-        },
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            children: [
-              Expanded(
-                flex: 3,
-                child: Image.network(
-                  item.urlToImage ?? ApiConst.image,
-                  fit: BoxFit.fitWidth,
-                ),
-              ),
-              const SizedBox(width: 14),
-              Expanded(
-                flex: 5,
-                child: Text(
-                  item.title ?? '',
-                  style: const TextStyle(fontSize: 16),
-                ),
-              ),
-            ],
-          ),
         ),
       ),
     );

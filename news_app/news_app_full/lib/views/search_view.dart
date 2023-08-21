@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:news_app_full/components/news_card.dart';
 import 'package:news_app_full/models/top_news.dart';
 import 'package:news_app_full/services/fetch_service.dart';
 import 'package:news_app_full/theme/app_colors.dart';
-import 'package:news_app_full/views/home_view.dart';
 
 class SearchView extends StatefulWidget {
   const SearchView({Key? key}) : super(key: key);
