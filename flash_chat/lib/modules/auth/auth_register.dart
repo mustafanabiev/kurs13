@@ -1,6 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:developer';
+
 import 'package:flash_chat/components/buttons/custom_button.dart';
-import 'package:flash_chat/modules/home/home_page.dart';
+import 'package:flash_chat/service/auth_service.dart';
 import 'package:flutter/material.dart';
 
 class AuthRegister extends StatefulWidget {
@@ -14,26 +15,6 @@ class _AuthRegisterState extends State<AuthRegister> {
   final _formKey = GlobalKey<FormState>();
   final ctlEmail = TextEditingController();
   final ctlPassword = TextEditingController();
-
-  Future<void> register({
-    required String email,
-    required String password,
-  }) async {
-    try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
-      } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
-      }
-    } catch (e) {
-      print(e);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,20 +52,14 @@ class _AuthRegisterState extends State<AuthRegister> {
                   if (_formKey.currentState!.validate()) {
                     if (ctlEmail.text.isNotEmpty &&
                         ctlPassword.text.isNotEmpty) {
-                      await register(
+                      await authService.register(
+                        context,
                         email: ctlEmail.text,
                         password: ctlPassword.text,
                       );
-                      // ignore: use_build_context_synchronously
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const HomePage(),
-                        ),
-                      );
                       FocusManager.instance.primaryFocus?.unfocus();
                     } else {
-                      print('ctlEmail or ctlPassword is empty');
+                      log('ctlEmail or ctlPassword is empty');
                     }
                   }
                 },
