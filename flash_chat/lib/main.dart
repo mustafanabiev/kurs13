@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flash_chat/app/app.dart';
 import 'package:flash_chat/firebase_options.dart';
+import 'package:flash_chat/service/token_service.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
@@ -8,5 +9,6 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  final isAuth = await tokenService.init();
+  runApp(MyApp(isAuth));
 }
