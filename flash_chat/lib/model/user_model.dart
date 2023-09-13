@@ -25,7 +25,7 @@ class UserModel {
       user: json['user'] as String,
       sms: json['sms'] as String,
       dateTime: DateTime.fromMillisecondsSinceEpoch(json['dateTime'] as int),
-      isMe: json['isMe'] as bool,
+      isMe: json['isMe'] != null ? json['isMe'] as bool : null,
     );
   }
 }
