@@ -10,5 +10,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   final isAuth = await tokenService.init();
-  runApp(MyApp(isAuth));
+  final password = await tokenService.readData();
+  runApp(MyApp(isAuth, password));
 }

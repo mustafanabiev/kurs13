@@ -2,12 +2,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flash_chat/components/messages/send_message.dart';
 import 'package:flash_chat/model/user_model.dart';
 import 'package:flash_chat/modules/home/service/home_service.dart';
+import 'package:flash_chat/modules/welcome/welcome_page.dart';
 import 'package:flash_chat/service/token_service.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key, this.password}) : super(key: key);
+  final String? password;
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -34,12 +36,28 @@ class _HomePageState extends State<HomePage> {
             itemBuilder: (context) => [
               PopupMenuItem(
                 onTap: () async {
+                  Navigator.pushAndRemoveUntil<void>(
+                    context,
+                    MaterialPageRoute<void>(
+                      builder: (BuildContext context) => const WelcomePage(),
+                    ),
+                    ModalRoute.withName('/'),
+                  );
                   await TokenService().removeData();
                 },
                 child: const Text('Logout Account'),
               ),
               PopupMenuItem(
-                onTap: () {},
+                onTap: () async {
+                  Navigator.pushAndRemoveUntil<void>(
+                    context,
+                    MaterialPageRoute<void>(
+                      builder: (BuildContext context) => const WelcomePage(),
+                    ),
+                    ModalRoute.withName('/'),
+                  );
+                  await HomeService().delete(widget.password ?? '');
+                },
                 child: const Text('Delete Account'),
               ),
             ],

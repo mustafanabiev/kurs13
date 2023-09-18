@@ -18,7 +18,8 @@ class AuthService {
         email: email,
         password: password,
       );
-      tokenService.setData(item.user!.uid);
+      tokenService.setData(WitchToken.uid, item.user!.uid);
+      tokenService.setData(WitchToken.password, password);
       // ignore: use_build_context_synchronously
       Navigator.pushAndRemoveUntil(
         context,
@@ -48,7 +49,8 @@ class AuthService {
         email: email,
         password: password,
       );
-      tokenService.setData(item.user!.uid);
+      tokenService.setData(WitchToken.uid, item.user!.uid);
+      tokenService.setData(WitchToken.password, password);
       // ignore: use_build_context_synchronously
       Navigator.pushAndRemoveUntil(
         context,
