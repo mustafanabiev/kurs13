@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rest_api_with_bloc/cubit/home_cubit.dart';
 import 'package:rest_api_with_bloc/models/user_model.dart';
+import 'package:rest_api_with_bloc/utils/enam.dart';
 
 class CubitPage extends StatelessWidget {
   const CubitPage({Key? key}) : super(key: key);
@@ -15,13 +16,13 @@ class CubitPage extends StatelessWidget {
       body: Center(
         child: BlocBuilder<HomeCubit, HomeCubitState>(
           builder: (context, state) {
-            if (state is HomeInitial) {
+            if (state.status == FetchStatus.initial) {
               return const Text('initial state');
-            } else if (state is HomeLoading) {
+            } else if (state.status == FetchStatus.loading) {
               return const CircularProgressIndicator();
-            } else if (state is HomeSuccess) {
+            } else if (state.status == FetchStatus.success) {
               return UserListWidget(users: state.users ?? []);
-            } else if (state is HomeError) {
+            } else if (state.status == FetchStatus.error) {
               return Text(state.message ?? '');
             } else {
               return const Text('default state');
