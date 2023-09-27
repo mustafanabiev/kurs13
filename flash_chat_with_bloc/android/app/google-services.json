@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "251050965507",
+    "project_id": "flash-chat-bloc-2a61f",
+    "storage_bucket": "flash-chat-bloc-2a61f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:251050965507:android:6e4dbd5fa918558b41ec36",
+        "android_client_info": {
+          "package_name": "com.example.flash_chat_with_bloc"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDI3wjvK0OhJaeKZdMf-RPIha8jl0iEvi8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
